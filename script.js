@@ -4,8 +4,8 @@ for(i = 0; i < 16; i++){
   container.append(newDiv)
 }
 
-let body = document.querySelector("body");
+let allContainer = document.querySelector(".allContainer");
 for(i = 0; i < 15; i++){
   let newContainer = container.cloneNode(true);
-  body.append(newContainer);
+  allContainer.append(newContainer);
 }

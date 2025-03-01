@@ -1,9 +1,17 @@
+body {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
 .container {
   display: flex;
 }
 
 .container div {
-  height: 80px;
-  flex: 1;
+  height: 30px;
+  width: 30px;
   border: 1px solid;
 }
