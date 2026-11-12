@@ -14,18 +14,23 @@
 
 const gridContainer = document.querySelector("#grid-container");
 
-for (let i = 0; i < 16; i++) {
-  const rowDiv = document.createElement("div");
-  rowDiv.classList.add("row-div");
+function CreateGrid(numOfDivPerSide) {
+  for (let i = 0; i < numOfDivPerSide; i++) {
+    const rowDiv = document.createElement("div");
+    rowDiv.classList.add("row-div");
 
-  for (let j = 0; j < 16; j++) {
-    const innerDiv = document.createElement("div");
-    // innerDiv.id = `${i + 1}, ${j + 1}`
-    rowDiv.appendChild(innerDiv);
+    for (let j = 0; j < numOfDivPerSide; j++) {
+      const innerDiv = document.createElement("div");
+      // innerDiv.id = `${i + 1}, ${j + 1}`
+      rowDiv.appendChild(innerDiv);
+    }
+
+    gridContainer.appendChild(rowDiv);
   }
-  
-  gridContainer.appendChild(rowDiv);
 }
+
+CreateGrid(16);
+
 
 // Set up a “hover” effect so that the grid divs change color when your mouse passes over them, leaving a (pixelated) trail through your grid like a pen would
 // “Hovering” is what happens when your mouse enters (mouseover) a div and ends when your mouse leaves (mouseout) it
@@ -40,9 +45,40 @@ gridContainer.addEventListener("mouseover", (e) => {
   });
 });
 
-// Add a button on the top of the screen that will send the user a popup asking for the number of squares per side for the new grid. Once entered, the existing grid should be removed, and a new grid should be generated in the same total space as before
-// Set the limit for the user input to a maximum of 100
-// You should be able to enter 64 and have a brand new 64x64 grid pop up without changing the total amount of pixels used
+// Add a button on the top of the screen and query that button then store it to variable btn
+// Set an event listener for click event to btn and register an event handler
+  // that will send the user a popup asking for the number of squares per side for the new grid.
+    // Prompt question: "Decide the number of squares per side for the new grid\n\n(max: 100)", with 16 as default value
+    // and Store the value into variable numForNewGrid
+
+  // Set the limit for the user input to a maximum of 100
+    // If numForNewGrid is integer AND numForNewGrid is smaller than or equal to 100 AND numForNewGrid is bigger than 0
+      // the existing grid should be removed, 
+        // Replace child node of gridContainer with no replacement
+      // Call CreateGrid(numForNewGrid)
+    // Else 
+      // Alert "Your input isn't valid.\nThe input should be a positive integer which isn't bigger than 100."
+      // Set numForNewGrid to ""
+
+const btn = document.querySelector("button");
+btn.addEventListener("click", () => {
+  const numForNewGrid = prompt(
+    "Decide the number of squares per side for the new grid\n\n(max: 100)",
+    "16",
+  );
+
+  if (
+    Number.isInteger(parseFloat(numForNewGrid)) &&
+    numForNewGrid <= 100 &&
+    numForNewGrid > 0) {
+      gridContainer.replaceChildren();
+      CreateGrid(numForNewGrid);
+  } else {
+    alert(
+      "Your input isn't valid.\nThe input should be a positive integer which isn't bigger than 100.",
+    );
+  }
+});
 
 // Extra credit
 // Rather than squares being the same color throughout the grid, randomize the squares’ RGB values with each interaction
