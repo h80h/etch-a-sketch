@@ -9,15 +9,21 @@ body {
   gap: 5px;
 }
 
+#outer-container {
+  width: 300px;
+  height: 300px;
+  border: black 1px solid;
+  /* make the grid almost stay at center of viewport according to button's box model and gap between them */
+  margin-bottom: 26.5px;
+}
+
 /* Use Flexbox to make the 16 * 16 divs appear as a grid */
 /* Be careful with borders and margins, as they can adjust the size of the squares ! */
 #grid-container {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  /* width: 300px; */
   height: 300px;
-  /* make the grid almost stay at center of viewport according to button's box model and gap between them */
-  margin-bottom: 26.5px;
 }
 
 .row-div {
@@ -27,14 +33,4 @@ body {
 
 .row-div div {
   flex: 1;
-  border-top: black 1px solid;
-  border-left: black 1px solid;
-}
-
-.row-div div:last-child {
-  border-right: black 1px solid;
-}
-
-.row-div:last-child div {
-  border-bottom: black 1px solid;
 }
