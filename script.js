@@ -20,13 +20,30 @@ for (let i = 0; i < 16; i++) {
 
   for (let j = 0; j < 16; j++) {
     const innerDiv = document.createElement("div");
+    innerDiv.id = `${i + 1}, ${j + 1}`
     rowDiv.appendChild(innerDiv);
   }
 
   gridContainer.appendChild(rowDiv);
 }
+
 // Set up a “hover” effect so that the grid divs change color when your mouse passes over them, leaving a (pixelated) trail through your grid like a pen would
-// “Hovering” is what happens when your mouse enters a div and ends when your mouse leaves it
+// “Hovering” is what happens when your mouse enters (mouseover) a div and ends when your mouse leaves (mouseout) it
+  // Set an event listener for mouseover event to gridContainer and register an event handler 
+    // that if e.target.id exists and e.target.id doesn't equal to "grid-container"
+      // Set an event listener for mouseout event to e.target and register an event handler 
+      // that Set backgroundColor of e.target to rgb(0, 0, 0)
+
+gridContainer.addEventListener("mouseover", (e) => {
+  // console.log(e.target.id);
+  if (e.target.id !== "" && e.target.id !== "grid-container") {
+    e.target.addEventListener("mouseout", () => {
+      e.target.style.backgroundColor = "rgb(0, 0, 0)";
+      // console.log("hover")
+    });
+  }
+});
+
 // Add a button on the top of the screen that will send the user a popup asking for the number of squares per side for the new grid. Once entered, the existing grid should be removed, and a new grid should be generated in the same total space as before
 // Set the limit for the user input to a maximum of 100
 // You should be able to enter 64 and have a brand new 64x64 grid pop up without changing the total amount of pixels used
