@@ -16,7 +16,6 @@ body {
   flex-direction: column;
   width: 300px;
   height: 300px;
-  box-sizing: border-box;
   /* make the grid almost stay at center of viewport according to button's box model and gap between them */
   margin-bottom: 26.5px;
 }
@@ -36,6 +35,6 @@ body {
   border-right: black 1px solid;
 }
 
-.row-div:last-child > div {
+.row-div:last-child div {
   border-bottom: black 1px solid;
 }
