@@ -36,7 +36,7 @@ for (let i = 0; i < 16; i++) {
 
 gridContainer.addEventListener("mouseover", (e) => {
   // console.log(e.target.id);
-  if (e.target.id !== "" && e.target.id !== "grid-container") {
+  if (e.target.id && e.target.id !== "grid-container") {
     e.target.addEventListener("mouseout", () => {
       e.target.style.backgroundColor = "rgb(0, 0, 0)";
       // console.log("hover")
