@@ -61,10 +61,11 @@ gridContainer.addEventListener("mouseover", (e) => {
       // Set numForNewGrid to ""
 
 const btn = document.querySelector("button");
+let lastValidInput = 16;
 btn.addEventListener("click", () => {
   const numForNewGrid = prompt(
     "Decide the number of squares per side for the new grid\n\n(max: 100)",
-    "16",
+    lastValidInput,
   );
 
   if (
@@ -73,6 +74,7 @@ btn.addEventListener("click", () => {
     numForNewGrid > 0) {
       gridContainer.replaceChildren();
       CreateGrid(numForNewGrid);
+      lastValidInput = numForNewGrid;
   } else {
     alert(
       "Your input isn't valid.\nThe input should be a positive integer which isn't bigger than 100.",
