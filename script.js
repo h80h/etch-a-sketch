@@ -77,7 +77,7 @@ function playGame() {
         gridContainer.replaceChildren();
         createGrid(numForNewGrid);
         lastValidInput = numForNewGrid;
-    } else {
+    } else if (numForNewGrid !== null) {
       alert(
         "Your input isn't valid.\nThe input should be a positive integer which isn't bigger than 100.",
       );
