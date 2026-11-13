@@ -14,7 +14,7 @@
 
 const gridContainer = document.querySelector("#grid-container");
 
-function CreateGrid(numOfDivPerSide) {
+function createGrid(numOfDivPerSide) {
   for (let i = 0; i < numOfDivPerSide; i++) {
     const rowDiv = document.createElement("div");
     rowDiv.classList.add("row-div");
@@ -29,7 +29,7 @@ function CreateGrid(numOfDivPerSide) {
   }
 }
 
-CreateGrid(16);
+createGrid(16);
 
 
 // Set up a “hover” effect so that the grid divs change color when your mouse passes over them, leaving a (pixelated) trail through your grid like a pen would
@@ -55,7 +55,7 @@ gridContainer.addEventListener("mouseover", (e) => {
     // If numForNewGrid is integer AND numForNewGrid is smaller than or equal to 100 AND numForNewGrid is bigger than 0
       // the existing grid should be removed, 
         // Replace child node of gridContainer with no replacement
-      // Call CreateGrid(numForNewGrid)
+      // Call createGrid(numForNewGrid)
     // Else 
       // Alert "Your input isn't valid.\nThe input should be a positive integer which isn't bigger than 100."
       // Set numForNewGrid to ""
@@ -73,7 +73,7 @@ btn.addEventListener("click", () => {
     numForNewGrid <= 100 &&
     numForNewGrid > 0) {
       gridContainer.replaceChildren();
-      CreateGrid(numForNewGrid);
+      createGrid(numForNewGrid);
       lastValidInput = numForNewGrid;
   } else {
     alert(
