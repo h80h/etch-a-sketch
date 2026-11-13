@@ -8,7 +8,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <button>new</button>
+  <div id="settings">
+    <label for="mode">Mode:</label>
+    <select name="mode" id="mode">
+      <option value="default" selected>default</option>
+      <option value="random color">random color</option>
+      <option value="grayscale">grayscale</option>
+    </select>
+    <button>new</button>
+  </div>
   <div id="outer-container">
     <div id="grid-container"></div>
   </div>
