@@ -24,6 +24,7 @@ function playGame() {
   let mode = "default";
 
   function createGrid(numOfDivPerSide) {
+    gridContainer.replaceChildren();
     for (let i = 0; i < numOfDivPerSide; i++) {
       const rowDiv = document.createElement("div");
       rowDiv.classList.add("row-div");
@@ -76,6 +77,9 @@ function playGame() {
     }
   });
 
+  // Clear grid
+  gridContainer.addEventListener("wheel", () => createGrid(lastValidInput));
+
   // Query the button and store it to variable btn
   // Set an event listener for click event to btn and register an event handler
   // that will send the user a popup asking for the number of squares per side for the new grid.
@@ -102,7 +106,6 @@ function playGame() {
       numForNewGrid <= 100 &&
       numForNewGrid > 0
     ) {
-      gridContainer.replaceChildren();
       createGrid(numForNewGrid);
       lastValidInput = numForNewGrid;
       mode = modeSelector.value;

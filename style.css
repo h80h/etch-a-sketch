@@ -16,7 +16,7 @@ body {
   height: 300px;
   border: black 1px solid;
   /* make the grid almost stay at center of viewport according to button's box model and gap between them */
-  margin-bottom: 26.5px;
+  /* margin-bottom: 26.5px; */
 }
 
 #grid-container {
@@ -43,6 +43,6 @@ body {
   font-family: Arial, Helvetica, sans-serif
 }
 
-label {
+label, #info {
   line-height: 22px;
 }
