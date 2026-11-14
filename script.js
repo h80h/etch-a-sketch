@@ -7,14 +7,14 @@ function playGame() {
   // Query “container” div and store it to variable gridContainer
   // Initialize counter i and set its value to 0
   // While i is smaller than 16
-  // Create div element and store it to variable rowDiv
-  // Add "row-div" to rowDiv's classList property
+  // Create div element and store it to variable rowContainer
+  // Add "row-container" to rowContainer's classList property
   // Initialize counter j and set its value to 0
   // While j is smaller than 16
-  // Create div element and store it to variable innerDiv
-  // Append innerDiv to rowDiv
+  // Create div element and store it to variable cell
+  // Append cell to rowContainer
   // Increase j by 1
-  // Append rowDiv to gridContainer
+  // Append rowContainer to gridContainer
   // Increase i by 1
 
   const gridContainer = document.querySelector("#grid-container");
@@ -23,19 +23,18 @@ function playGame() {
   let lastValidInput = 16;
   let mode = "default";
 
-  function createGrid(numOfDivPerSide) {
+  function createGrid(numOfCellPerSide) {
     gridContainer.replaceChildren();
-    for (let i = 0; i < numOfDivPerSide; i++) {
-      const rowDiv = document.createElement("div");
-      rowDiv.classList.add("row-div");
+    for (let i = 0; i < numOfCellPerSide; i++) {
+      const rowContainer = document.createElement("div");
+      rowContainer.classList.add("row-container");
 
-      for (let j = 0; j < numOfDivPerSide; j++) {
-        const innerDiv = document.createElement("div");
-        // innerDiv.id = `${i + 1}, ${j + 1}`
-        rowDiv.appendChild(innerDiv);
+      for (let j = 0; j < numOfCellPerSide; j++) {
+        const cell = document.createElement("div");
+        rowContainer.appendChild(cell);
       }
 
-      gridContainer.appendChild(rowDiv);
+      gridContainer.appendChild(rowContainer);
     }
   }
 
@@ -48,32 +47,28 @@ function playGame() {
   // If mode variable's value is "random color"
   // Rather than squares being the same color throughout the grid, randomize the squares’ RGB values with each interaction
   // Call getRandomInt(255) for Red, Green and Blue value of rgb function and Set backgroundColor of e.target to that rgb value
-  // Else if mode variable's value is "grayscale"
-  // Additionally, implement a progressive darkening effect where each interaction darkens the square by 10%.
-  // The goal is to achieve a fully black (or completely colored) square in only ten interactions
+  // Else 
   // Set backgroundColor of e.target to rgb(0 0 0)
-  // Else if variable's value is "default"
-  // Set backgroundColor of e.target to rgb(0, 0, 0)
+  
   // Else if mode variable's value is "grayscale"
   // If opacity of e.target is smaller than 1
   // Add 0.1 to opacity of e.target and Assign the return to opacity of e.target itself
   //
 
   gridContainer.addEventListener("mouseover", (e) => {
-    if (!e.target.style.backgroundColor) {
-      if (mode === "random color") {
-        e.target.style.backgroundColor = `rgb(${getRandomInt(255)} ${getRandomInt(255)} ${getRandomInt(255)})`;
-      } else if (mode === "grayscale") {
-        e.target.style.backgroundColor = "rgb(0 0 0)";
-      } else if (mode === "default") {
-        e.target.style.backgroundColor = "rgb(0 0 0)";
+    const cell = e.target;
+    if (mode === "random color") {
+      if (!cell.style.backgroundColor) {
+        cell.style.backgroundColor = `rgb(${getRandomInt(255)} ${getRandomInt(255)} ${getRandomInt(255)})`;      
       }
-      console.log("add bg color");
+    } else if (!cell.classList[0]) {
+      cell.classList.add("default");
+      // console.log("add class");
     }
 
-    if (mode === "grayscale" && e.target.style.opacity < 1) {
-      e.target.style.opacity = String(+e.target.style.opacity + 0.1);
-      // console.log(e.target.style.opacity);
+    if (mode === "grayscale" && cell.style.opacity < 1) {
+      cell.style.opacity = String(+cell.style.opacity + 0.1);
+      // console.log(cell.style.opacity);
     }
   });
 
@@ -97,7 +92,7 @@ function playGame() {
 
   btn.addEventListener("click", () => {
     const numForNewGrid = prompt(
-      "Decide the number of squares per side for the new grid (max: 100)\nSelected mode will also be applied to the new grid",
+      "Decide the number of cells per side for the new grid (max: 100)\nSelected mode will also be applied to the new grid",
       lastValidInput,
     );
 
